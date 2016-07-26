@@ -59,7 +59,9 @@ func SetupRouter(c *controllers.Env) *mux.Router{
 	r := mux.NewRouter().StrictSlash(true)
 
 	s := r.PathPrefix("/api/v1/customer").Subrouter()
-	s.HandleFunc("/",c.ShowCustomer ).Methods("GET")
+	s.HandleFunc("/",c.CustomerAll ).Methods("GET")
+	s.HandleFunc("/{code}",c.ShowCustomer ).Methods("GET")
+
 	return r
 
 }
