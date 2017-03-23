@@ -14,7 +14,7 @@ import (
 var debug = flag.Bool("debug", false, "enable debugging")
 var password = flag.String("password", "[ibdkifu", "the database password")
 var port *int = flag.Int("port", 1433, "the database port")
-var server = flag.String("server", "olaf", "the database server")
+var server = flag.String("server", "s01.nopadol.com", "the database server")
 var user = flag.String("user", "sa", "the database user")
 
 
