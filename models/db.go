@@ -6,7 +6,10 @@ import (
 	"database/sql"
 	_ "github.com/denisenkom/go-mssqldb"
 	"log"
+	"flag"
 )
+
+
 
 func NewDB(dsn string) (*sql.DB, error) {
 	db, err := sql.Open("mssql", dsn)
@@ -21,5 +24,7 @@ func NewDB(dsn string) (*sql.DB, error) {
 		return nil, err
 	}
 	log.Println("db=", db)
+
+
 	return db,nil
 }

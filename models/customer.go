@@ -18,7 +18,7 @@ type customers []*Customer
 
 func (ct *Customer) Show(s string,db *sql.DB) (*Customer, error){
 
-	err := db.QueryRow("select top 1 code,name1,billaddress,isnull(cast(sumofmark1 as int),0) as point from pos.dbo.bcar where code = ? ",s).Scan(&ct.Code,&ct.Name,&ct.Address,&ct.Point)
+	err := db.QueryRow("select top 1 code,name1,billaddress,isnull(cast(sumofmark1 as int),0) as point from bcnp.dbo.bcar where code = ? ",s).Scan(&ct.Code,&ct.Name,&ct.Address,&ct.Point)
 	fmt.Println("print customer "+string(ct.Point))
 
 
@@ -30,7 +30,7 @@ func (ct *Customer) Show(s string,db *sql.DB) (*Customer, error){
 }
 
 func (ct *Customer) All(db *sql.DB) ([]*Customer, error){
-	rows,err := db.Query("select top 200 code,name1,billaddress,cast(isnull(sumofmark1,0) as int) as point from pos.dbo.bcar order by sumofmark1 desc ")
+	rows,err := db.Query("select top 200 code,name1,billaddress,cast(isnull(sumofmark1,0) as int) as point from bcnp.dbo.bcar order by sumofmark1 desc ")
 
 	if err != nil {
 		return nil,err

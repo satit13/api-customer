@@ -14,7 +14,7 @@ import (
 var debug = flag.Bool("debug", false, "enable debugging")
 var password = flag.String("password", "[ibdkifu", "the database password")
 var port *int = flag.Int("port", 1433, "the database port")
-var server = flag.String("server", "s01.nopadol.com", "the database server")
+var server = flag.String("server", "nebula2.nopadol.com", "the database server")
 var user = flag.String("user", "sa", "the database user")
 
 
@@ -27,6 +27,7 @@ func main(){
 		fmt.Printf(" server:%s\n", *server)
 		fmt.Printf(" user:%s\n", *user)
 	}
+
 	connString := fmt.Sprintf("server=%s;user id=%s;password=%s;port=%d", *server, *user, *password, *port)
 	fmt.Println(connString)
 	if *debug {
@@ -44,7 +45,6 @@ func main(){
 	defer db.Close()
 
 
-
 	fmt.Println("main.go api ")
 
 
@@ -57,7 +57,6 @@ func main(){
 
 func SetupRouter(c *controllers.Env) *mux.Router{
 	r := mux.NewRouter().StrictSlash(true)
-
 	s := r.PathPrefix("/api/v1/customer").Subrouter()
 	s.HandleFunc("/",c.CustomerAll ).Methods("GET")
 	s.HandleFunc("/{code}",c.ShowCustomer ).Methods("GET")
